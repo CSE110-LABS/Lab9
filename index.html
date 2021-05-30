@@ -56,17 +56,90 @@
   </section>
 
   <script>
-    let calculateBtn = document.querySelector('#calculate');
-    calculateBtn.addEventListener('click', () => {
-      let output = document.querySelector('output');
-      let firstNum = document.querySelector('#first-num').value;
-      let secondNum = document.querySelector('#second-num').value;
-      let operator = document.querySelector('#operator').value;
-      output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
-    });
+      let calculateBtn = document.querySelector("#calculate");
+      calculateBtn.addEventListener("click", () => {
+        let output = document.querySelector("output");
+        let firstNum = document.querySelector("#first-num").value;
+        let secondNum = document.querySelector("#second-num").value;
+        let operator = document.querySelector("#operator").value;
 
-    let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
-    // TODO - Make buttons functional
-  </script>
+        try {
+          if (firstNum == "" && secondNum == "")
+            throw new ValidationError("There's no input!");
+        } catch (err) {
+          output.innerHTML = "Input values accordingly";
+        } finally {
+          alert("Please try again");
+        }
+        output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      });
+
+      let errorBtns = Array.from(
+        document.querySelectorAll("#error-btns > button")
+      );
+      // TODO - Make buttons functional
+
+      //console.log
+      errorBtns[0].addEventListener("click", () => {
+        console.log("Console Log Demo");
+      });
+
+      //console.error
+      errorBtns[1].addEventListener("click", () => {
+        console.log("Console Log Error");
+      });
+
+      //console.table
+      errorBtns[6].addEventListener("click", () => {
+        console.table(errorBtns);
+      });
+
+      //console.dir
+      errorBtns[2].addEventListener("click", () => {
+        console.dir(errorBtns[2]);
+      });
+
+      //console.dirxml
+      errorBtns[3].addEventListener("click", () => {
+        console.dirxml(document.body);
+      });
+
+      //console.group
+      errorBtns[4].addEventListener("click", () => {
+        console.group();
+      });
+
+      //console.group end
+      errorBtns[5].addEventListener("click", () => {
+        console.groupEnd(label);
+      });
+
+      //console.time
+      errorBtns[7].addEventListener("click", () => {
+        console.time("Timer Starting");
+      });
+
+      //console.timeEnd
+      errorBtns[8].addEventListener("click", () => {
+        console.timeEnd("Timer Ending");
+      });
+
+      //console.trace
+      errorBtns[9].addEventListener("click", () => {
+        const first = () => {
+          second();
+        };
+        const second = () => {
+          third();
+        };
+        const third = () => {
+          fourth();
+        };
+        const fourth = () => {
+          console.trace();
+        };
+        first();
+      });
+    </script>
 </body>
 </html>
